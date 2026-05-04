@@ -6,34 +6,34 @@
     <title>Admin Login</title>
 </head>
 <body>
-    <div layout:fragment="content" style="max-width: 440px; margin: 0 auto; padding-top: 40px; animation: fadeInUp 0.8s ease-out;">
-        <div style="background: var(--card-bg); padding: 48px; border-radius: 24px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); box-shadow: var(--shadow-md);">
-            <div style="text-align: center; margin-bottom: 40px;">
-                <div class="header__logo" style="font-size: 2rem; margin-bottom: 12px;">Antigravity</div>
-                <h1 style="font-size: 1.5rem; opacity: 0.8;">Admin Portal</h1>
+    <div layout:fragment="content" style="max-width: 460px; margin: 0 auto; padding-top: 60px; animation: auroraMove 20s infinite alternate linear;">
+        <div style="background: var(--bg-surface); padding: 56px; border-radius: 40px; border: 1px solid var(--glass-border); backdrop-filter: blur(40px); box-shadow: 0 40px 100px rgba(0,0,0,0.6);">
+            <div style="text-align: center; margin-bottom: 48px;">
+                <div class="header__logo" style="font-size: 2.5rem; margin-bottom: 8px;">NOVA</div>
+                <h1 style="font-size: 1.25rem; font-weight: 500; opacity: 0.5; letter-spacing: 0.1em; text-transform: uppercase;">Command Portal</h1>
             </div>
             
-            <div th:if="${param.error}" style="background: #fee2e2; color: #ef4444; padding: 12px; border-radius: 12px; margin-bottom: 24px; font-size: 0.9rem; text-align: center; font-weight: 600;">
-                <i class="bi bi-exclamation-circle"></i> Invalid credentials
+            <div th:if="${param.error}" style="background: rgba(244, 114, 182, 0.1); color: var(--accent-pink); padding: 14px; border-radius: 16px; margin-bottom: 32px; font-size: 0.95rem; text-align: center; border: 1px solid rgba(244, 114, 182, 0.2);">
+                <i class="bi bi-shield-lock"></i> Verification failed.
             </div>
 
-            <form th:action="@{/admin/login}" method="POST">
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label>Username</label>
-                    <input type="text" name="username" placeholder="Enter username" required>
+            <form th:action="@{/admin/login}" method="POST" style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="color: var(--accent-cyan); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;">Identifier</label>
+                    <input type="text" name="username" placeholder="Username" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 14px; border-radius: 12px; outline: none;" required>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label>Password</label>
-                    <input type="password" name="password" placeholder="••••••••" required>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label style="color: var(--accent-violet); font-size: 0.8rem; letter-spacing: 0.05em; text-transform: uppercase;">Access Key</label>
+                    <input type="password" name="password" placeholder="••••••••" style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 14px; border-radius: 12px; outline: none;" required>
                 </div>
-                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; justify-content: center; height: 48px;">
-                    Sign In
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 16px; justify-content: center; height: 52px; font-size: 1rem; letter-spacing: 0.05em;">
+                    Initialize Access
                 </button>
             </form>
             
-            <div style="margin-top: 32px; text-align: center;">
-                <a th:href="@{/}" style="font-size: 0.9rem; opacity: 0.6; font-weight: 600;">
-                    &larr; Back to Public Blog
+            <div style="margin-top: 40px; text-align: center;">
+                <a th:href="@{/}" style="font-size: 0.95rem; opacity: 0.4; font-weight: 500; transition: opacity 0.3s;" onmouseover="this.style.opacity='1'" onmouseout="this.style.opacity='0.4'">
+                    &larr; Return to Surface
                 </a>
             </div>
         </div>

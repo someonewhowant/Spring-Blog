@@ -6,8 +6,8 @@
     <title>Search Results</title>
 </head>
 <body>
-    <div layout:fragment="content" style="animation: fadeInUp 0.8s ease-out;">
-        <h1 style="margin-bottom: 48px;">Search Results for: <span style="color: var(--accent-color);" th:text="${searchTerm}"></span></h1>
+    <div layout:fragment="content" style="animation: auroraMove 20s infinite alternate linear;">
+        <h1 class="author__heading" style="margin-bottom: 60px; font-size: 3rem;">Search Results: <span style="color: var(--accent-cyan);" th:text="${searchTerm}"></span></h1>
         
         <ul class="article-ul">
             <li th:each="post : ${data}">
@@ -19,13 +19,16 @@
             </li>
         </ul>
         
-        <div th:if="${#lists.isEmpty(data)}" style="text-align: center; padding: 100px 0;">
-            <i class="bi bi-search" style="font-size: 4rem; opacity: 0.1;"></i>
-            <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.6;">No posts found matching your search.</p>
+        <div th:if="${#lists.isEmpty(data)}" style="text-align: center; padding: 120px 0; background: var(--bg-surface); border-radius: 32px; border: 1px dashed var(--glass-border);">
+            <i class="bi bi-telescope" style="font-size: 5rem; color: var(--accent-cyan); opacity: 0.3;"></i>
+            <p style="margin-top: 32px; font-size: 1.5rem; font-weight: 500; opacity: 0.8;">No signal detected from this sector.</p>
+            <p style="opacity: 0.5;">Try different coordinates (keywords).</p>
         </div>
         
-        <div style="margin-top: 64px;">
-            <a th:href="@{/}" class="pagination-btn">&larr; Back to Home</a>
+        <div style="margin-top: 80px;">
+            <a th:href="@{/}" class="pagination-btn" style="display: inline-flex; align-items: center; gap: 12px;">
+                <i class="bi bi-rocket-takeoff"></i> Return to Discovery
+            </a>
         </div>
     </div>
 </body>

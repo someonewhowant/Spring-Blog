@@ -6,14 +6,30 @@
     <title>About Us</title>
 </head>
 <body>
-    <div layout:fragment="content" style="max-width: 700px; margin: 0 auto; text-align: center; animation: fadeInUp 0.8s ease-out;">
-        <h1 style="font-size: 3.5rem; margin-bottom: 32px;">About Antigravity</h1>
-        <p style="font-size: 1.2rem; line-height: 1.8; opacity: 0.8;">
-            Antigravity is a forward-thinking blog platform dedicated to the intersection of deep tech, modern design, and creative engineering. Originally a Node.js concept, it has been reborn as a high-performance Spring Boot application, embodying the principles of visual excellence and technical robustness.
+    <div layout:fragment="content" style="max-width: 800px; margin: 0 auto; animation: auroraMove 20s infinite alternate linear;">
+        <h1 class="author__heading" style="text-align: center; font-size: clamp(3rem, 8vw, 5rem);">The Nova Manifesto</h1>
+        <p style="font-size: 1.25rem; line-height: 1.8; opacity: 0.8; text-align: center; margin-bottom: 60px;">
+            Project Nova is an expedition into the unknown. We are dedicated to chronicling the intersection of frontier technology, advanced design, and the celestial curiosities of the digital age. Reborn on Spring Boot 3, Nova embodies the peak of visual excellence and performance.
         </p>
-        <div style="margin-top: 60px; padding: 40px; background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 24px;">
-            <h3 style="margin-bottom: 16px;">Our Mission</h3>
-            <p>To provide a distraction-free, aesthetically pleasing environment for sharing transformative ideas.</p>
+        <div style="padding: 60px; background: var(--bg-surface); backdrop-filter: blur(20px); border: 1px solid var(--glass-border); border-radius: 40px; box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+            <h3 style="font-size: 2rem; margin-bottom: 24px; background: linear-gradient(to right, var(--accent-cyan), var(--accent-violet)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Our Mission</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; opacity: 0.8;">
+                We believe that code is the language of the future, and design is the soul of the machine. Nova serves as a beacon for those who seek to build beyond the conventional, reaching for the stars of innovation and creativity.
+            </p>
+            <div style="display: flex; gap: 40px; margin-top: 48px; border-top: 1px solid var(--glass-border); padding-top: 32px;">
+                <div>
+                    <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-cyan);">01</div>
+                    <div style="font-weight: 600; margin-top: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Frontier Tech</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-violet);">02</div>
+                    <div style="font-weight: 600; margin-top: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Celestial Design</div>
+                </div>
+                <div>
+                    <div style="font-size: 1.75rem; font-weight: 700; color: var(--accent-pink);">03</div>
+                    <div style="font-weight: 600; margin-top: 4px; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em;">Digital Legacy</div>
+                </div>
+            </div>
         </div>
     </div>
 </body>

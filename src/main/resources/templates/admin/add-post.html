@@ -6,27 +6,27 @@
     <title>Add New Post</title>
 </head>
 <body>
-    <div layout:fragment="content" style="max-width: 800px; margin: 0 auto; animation: fadeInUp 0.8s ease-out;">
-        <div class="admin-header">
-            <h1>Create New Insight</h1>
-            <a th:href="@{/admin/dashboard}" class="btn btn-outline">
-                <i class="bi bi-x-lg"></i> Cancel
+    <div layout:fragment="content" style="max-width: 900px; margin: 0 auto; animation: auroraMove 20s infinite alternate linear;">
+        <div class="admin-header" style="margin-bottom: 48px;">
+            <h1 class="author__heading" style="font-size: 2.5rem;">New Expedition</h1>
+            <a th:href="@{/admin/dashboard}" class="btn btn-outline" style="border-radius: 12px; border-color: var(--accent-pink); color: var(--accent-pink);">
+                <i class="bi bi-x-circle"></i> Abort
             </a>
         </div>
         
-        <div style="background: var(--card-bg); padding: 40px; border-radius: 24px; border: 1px solid var(--border-color);">
-            <form th:action="@{/admin/add-post}" method="POST">
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label for="title">Post Title</label>
-                    <input type="text" id="title" name="title" placeholder="e.g. The Future of Quantum Computing" required>
+        <div style="background: var(--bg-surface); padding: 48px; border-radius: 40px; border: 1px solid var(--glass-border); backdrop-filter: blur(40px); box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
+            <form th:action="@{/admin/add-post}" method="POST" style="display: flex; flex-direction: column; gap: 32px;">
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label for="title" style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Mission Title</label>
+                    <input type="text" id="title" name="title" placeholder="Descriptive title for this sector..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 16px; border-radius: 12px; font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent-cyan)'" onblur="this.style.borderColor='var(--glass-border)'" required>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 8px;">
-                    <label for="body">Content (Markdown supported)</label>
-                    <textarea id="body" name="body" rows="15" placeholder="Write your thoughts here..." required></textarea>
+                <div style="display: flex; flex-direction: column; gap: 12px;">
+                    <label for="body" style="color: var(--accent-violet); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Data Log (Markdown)</label>
+                    <textarea id="body" name="body" rows="15" placeholder="Record your observations here..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 20px; border-radius: 16px; font-size: 1.1rem; font-family: inherit; line-height: 1.6; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent-violet)'" onblur="this.style.borderColor='var(--glass-border)'" required></textarea>
                 </div>
-                <div style="display: flex; gap: 16px; margin-top: 10px;">
-                    <button type="submit" class="btn btn-primary" style="flex-grow: 1; justify-content: center;">
-                        <i class="bi bi-check-lg"></i> Publish Post
+                <div style="display: flex; gap: 16px; margin-top: 8px;">
+                    <button type="submit" class="btn btn-primary" style="flex-grow: 1; justify-content: center; height: 56px; font-size: 1.1rem; letter-spacing: 0.05em;">
+                        <i class="bi bi-rocket-takeoff"></i> Launch Expedition
                     </button>
                 </div>
             </form>
