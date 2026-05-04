@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title>Search Results</title>
+</head>
+<body>
+    <div layout:fragment="content">
+        <h1>Search Results for: <span th:text="${searchTerm}"></span></h1>
+        
+        <ul class="article-ul">
+            <li th:each="post : ${data}">
+                <a th:href="@{/post/{id}(id=${post.id})}">
+                    <span th:text="${post.title}">Post Title</span>
+                    <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMM dd, yyyy')}">Date</span>
+                </a>
+            </li>
+        </ul>
+        
+        <div th:if="${#lists.isEmpty(data)}">
+            <p>No posts found matching your search.</p>
+        </div>
+        
+        <a th:href="@{/}" class="pagination-btn">&lt; Back to Home</a>
+    </div>
+</body>
+</html>

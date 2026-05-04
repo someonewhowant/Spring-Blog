@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title th:text="${title}">Home</title>
+</head>
+<body>
+
+    <div layout:fragment="content">
+        <section class="author">
+            <h1 class="author__heading">Thinking made simple.</h1>
+            <p class="author__body">A modern blog platform migrated to Spring Boot.</p>
+        </section>
+
+        <img th:src="@{/img/hero-image.webp}" alt="Featured Illustration" class="hero-image">
+
+        <section class="articles">
+            <h2 style="margin-bottom: 30px;">Latest Publications</h2>
+
+            <ul class="article-ul">
+                <li th:each="post : ${data}">
+                    <a th:href="@{/post/{id}(id=${post.id})}">
+                        <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
+                        <span th:text="${post.title}">Post Title</span>
+                        <p style="margin-top: 15px; font-size: 0.95rem; color: var(--text-muted); font-weight: 400;" 
+                           th:text="${#strings.abbreviate(post.body, 120)}"></p>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="pagination">
+                <a th:if="${currentPage > 1}" 
+                   th:href="@{/(page=${currentPage - 1})}" 
+                   class="pagination-btn">&larr; Newer Posts</a>
+                   
+                <a th:if="${currentPage < totalPages}" 
+                   th:href="@{/(page=${currentPage + 1})}" 
+                   class="pagination-btn">Older Posts &rarr;</a>
+            </div>
+        </section>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{layouts/main}">
+<head>
+    <title th:text="${post.title}">Post</title>
+</head>
+<body>
+    <div layout:fragment="content" style="padding-top: 40px;">
+        <article>
+            <header style="text-align: center; margin-bottom: 50px;">
+                <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
+                <h1 style="font-size: 3.5rem; margin-top: 10px;" th:text="${post.title}">Title</h1>
+            </header>
+            
+            <div class="post-body" th:utext="${post.body}">
+                Content
+            </div>
+            
+            <footer style="margin-top: 80px; border-top: 1px solid var(--border-color); padding-top: 40px;">
+                <a th:href="@{/}" class="pagination-btn">&larr; Back to all posts</a>
+            </footer>
+        </article>
+    </div>
+</body>
+</html>

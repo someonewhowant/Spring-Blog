@@ -1,0 +1,30 @@
+<header class="header" th:fragment="header">
+    <div class="container" style="display: flex; justify-content: space-between; align-items: center; width: 100%;">
+        <a th:href="@{/}" class="header__logo">Spring Blog</a>
+        
+        <nav class="header__nav">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/about}">About</a></li>
+                <li><a th:href="@{/admin/dashboard}">Admin</a></li>
+            </ul>
+        </nav>
+
+        <div class="header__button">
+            <button class="searchBtn" aria-expanded="false">
+                <i class="bi bi-search"></i> Search
+            </button>
+        </div>
+    </div>
+
+    <!-- Search Bar Slide-down -->
+    <div class="searchBar">
+        <div class="container" style="display: flex; align-items: center; gap: 20px;">
+            <i class="bi bi-search" style="color: var(--bg-color); font-size: 1.5rem;"></i>
+            <form th:action="@{/search}" method="GET" role="search" style="flex-grow: 1;">
+                <input type="search" name="searchTerm" id="searchInput" placeholder="Type to search..." autocomplete="off">
+            </form>
+            <div id="searchClose" style="font-weight: 800; cursor: pointer; color: var(--bg-color);">ESC</div>
+        </div>
+    </div>
+</header>
