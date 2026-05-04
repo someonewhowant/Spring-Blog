@@ -1,3 +1,18 @@
 <footer class="footer" th:fragment="footer">
-    &copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> NodeJs Blog.
+    <div class="container">
+        <div style="display: flex; flex-direction: column; gap: 24px; align-items: center;">
+            <div class="header__logo" style="font-size: 2rem;">Antigravity</div>
+            <p style="max-width: 400px; margin: 0 auto; opacity: 0.8;">
+                Exploring the frontiers of technology, design, and human creativity. Built with passion using Spring Boot.
+            </p>
+            <div style="display: flex; gap: 20px; font-size: 1.5rem; margin: 10px 0;">
+                <a href="#"><i class="bi bi-twitter"></i></a>
+                <a href="#"><i class="bi bi-github"></i></a>
+                <a href="#"><i class="bi bi-linkedin"></i></a>
+            </div>
+            <div style="font-size: 0.8rem; opacity: 0.6; letter-spacing: 0.05em; text-transform: uppercase;">
+                &copy; <span th:text="${#dates.year(#dates.createNow())}">2024</span> Antigravity Media. All rights reserved.
+            </div>
+        </div>
+    </div>
 </footer>

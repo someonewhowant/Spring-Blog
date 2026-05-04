@@ -6,23 +6,27 @@
     <title>Search Results</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <h1>Search Results for: <span th:text="${searchTerm}"></span></h1>
+    <div layout:fragment="content" style="animation: fadeInUp 0.8s ease-out;">
+        <h1 style="margin-bottom: 48px;">Search Results for: <span style="color: var(--accent-color);" th:text="${searchTerm}"></span></h1>
         
         <ul class="article-ul">
             <li th:each="post : ${data}">
                 <a th:href="@{/post/{id}(id=${post.id})}">
-                    <span th:text="${post.title}">Post Title</span>
                     <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMM dd, yyyy')}">Date</span>
+                    <span th:text="${post.title}">Post Title</span>
+                    <p th:text="${#strings.abbreviate(post.body, 120)}"></p>
                 </a>
             </li>
         </ul>
         
-        <div th:if="${#lists.isEmpty(data)}">
-            <p>No posts found matching your search.</p>
+        <div th:if="${#lists.isEmpty(data)}" style="text-align: center; padding: 100px 0;">
+            <i class="bi bi-search" style="font-size: 4rem; opacity: 0.1;"></i>
+            <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.6;">No posts found matching your search.</p>
         </div>
         
-        <a th:href="@{/}" class="pagination-btn">&lt; Back to Home</a>
+        <div style="margin-top: 64px;">
+            <a th:href="@{/}" class="pagination-btn">&larr; Back to Home</a>
+        </div>
     </div>
 </body>
 </html>

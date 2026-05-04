@@ -6,25 +6,36 @@
     <title>Admin Login</title>
 </head>
 <body>
-    <div layout:fragment="content" style="max-width: 400px; margin: 0 auto; padding-top: 50px;">
-        <div style="background: var(--card-bg); padding: 40px; border-radius: var(--border-radius); border: 1px solid var(--border-color); box-shadow: var(--shadow-md);">
-            <h1 style="text-align: center; margin-bottom: 30px;">Login</h1>
+    <div layout:fragment="content" style="max-width: 440px; margin: 0 auto; padding-top: 40px; animation: fadeInUp 0.8s ease-out;">
+        <div style="background: var(--card-bg); padding: 48px; border-radius: 24px; border: 1px solid var(--border-color); backdrop-filter: blur(20px); box-shadow: var(--shadow-md);">
+            <div style="text-align: center; margin-bottom: 40px;">
+                <div class="header__logo" style="font-size: 2rem; margin-bottom: 12px;">Antigravity</div>
+                <h1 style="font-size: 1.5rem; opacity: 0.8;">Admin Portal</h1>
+            </div>
             
-            <div th:if="${param.error}" style="background: #fee2e2; color: #b91c1c; padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 0.9rem; text-align: center;">
-                Invalid username or password.
+            <div th:if="${param.error}" style="background: #fee2e2; color: #ef4444; padding: 12px; border-radius: 12px; margin-bottom: 24px; font-size: 0.9rem; text-align: center; font-weight: 600;">
+                <i class="bi bi-exclamation-circle"></i> Invalid credentials
             </div>
 
             <form th:action="@{/admin/login}" method="POST">
-                <div class="form-group">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Username</label>
-                    <input type="text" name="username" class="form-control" placeholder="admin" required>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label>Username</label>
+                    <input type="text" name="username" placeholder="Enter username" required>
                 </div>
-                <div class="form-group" style="margin-top: 20px;">
-                    <label style="display: block; margin-bottom: 8px; font-weight: 600;">Password</label>
-                    <input type="password" name="password" class="form-control" placeholder="••••••••" required>
+                <div style="display: flex; flex-direction: column; gap: 8px;">
+                    <label>Password</label>
+                    <input type="password" name="password" placeholder="••••••••" required>
                 </div>
-                <button type="submit" class="btn" style="width: 100%; margin-top: 30px; background: var(--accent-color); color: var(--bg-color);">Sign In</button>
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 20px; justify-content: center; height: 48px;">
+                    Sign In
+                </button>
             </form>
+            
+            <div style="margin-top: 32px; text-align: center;">
+                <a th:href="@{/}" style="font-size: 0.9rem; opacity: 0.6; font-weight: 600;">
+                    &larr; Back to Public Blog
+                </a>
+            </div>
         </div>
     </div>
 </body>

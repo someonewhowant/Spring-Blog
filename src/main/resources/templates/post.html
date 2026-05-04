@@ -6,19 +6,33 @@
     <title th:text="${post.title}">Post</title>
 </head>
 <body>
-    <div layout:fragment="content" style="padding-top: 40px;">
-        <article>
-            <header style="text-align: center; margin-bottom: 50px;">
+    <div layout:fragment="content">
+        <article style="max-width: 800px; margin: 0 auto; animation: fadeInUp 0.8s ease-out;">
+            <header style="text-align: center; margin-bottom: 64px;">
                 <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
-                <h1 style="font-size: 3.5rem; margin-top: 10px;" th:text="${post.title}">Title</h1>
+                <h1 style="font-size: clamp(2.5rem, 6vw, 4rem); margin-top: 20px; line-height: 1.1;" th:text="${post.title}">Title</h1>
+                <div style="margin-top: 32px; display: flex; justify-content: center; gap: 12px;">
+                    <div style="width: 40px; height: 40px; border-radius: 50%; background: var(--accent-color); display: flex; align-items: center; justify-content: center; color: white; font-weight: 800;">A</div>
+                    <div style="text-align: left;">
+                        <div style="font-weight: 700; font-size: 0.9rem;">Antigravity Team</div>
+                        <div style="font-size: 0.8rem; opacity: 0.6;">Technology & Research</div>
+                    </div>
+                </div>
             </header>
             
-            <div class="post-body" th:utext="${post.body}">
+            <div class="post-body" style="font-size: 1.2rem; line-height: 1.8; color: var(--text-color); opacity: 0.95;" th:utext="${post.body}">
                 Content
             </div>
             
-            <footer style="margin-top: 80px; border-top: 1px solid var(--border-color); padding-top: 40px;">
-                <a th:href="@{/}" class="pagination-btn">&larr; Back to all posts</a>
+            <footer style="margin-top: 80px; border-top: 1px solid var(--border-color); padding-top: 60px; display: flex; justify-content: space-between; align-items: center;">
+                <a th:href="@{/}" class="pagination-btn" style="display: flex; align-items: center; gap: 8px;">
+                    <i class="bi bi-arrow-left"></i> Back to all posts
+                </a>
+                <div style="display: flex; gap: 16px; font-size: 1.2rem; opacity: 0.6;">
+                    <span>Share:</span>
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-linkedin"></i></a>
+                </div>
             </footer>
         </article>
     </div>
