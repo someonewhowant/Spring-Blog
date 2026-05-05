@@ -6,27 +6,27 @@
     <title>Add New Post</title>
 </head>
 <body>
-    <div layout:fragment="content" style="max-width: 900px; margin: 0 auto; animation: auroraMove 20s infinite alternate linear;">
-        <div class="admin-header" style="margin-bottom: 48px;">
-            <h1 class="author__heading" style="font-size: 2.5rem;">New Expedition</h1>
-            <a th:href="@{/admin/dashboard}" class="btn btn-outline" style="border-radius: 12px; border-color: var(--accent-pink); color: var(--accent-pink);">
-                <i class="bi bi-x-circle"></i> Abort
+    <div layout:fragment="content" style="max-width: 900px; margin: 0 auto;">
+        <div class="admin-header" style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="author__heading" style="font-size: 1.8rem; margin: 0;">new_post.sh</h1>
+            <a th:href="@{/admin/dashboard}" class="btn btn-outline" style="color: var(--accent-orange); border-color: var(--accent-orange);">
+                <i class="bi bi-x-lg"></i> abort()
             </a>
         </div>
         
-        <div style="background: var(--bg-surface); padding: 48px; border-radius: 40px; border: 1px solid var(--glass-border); backdrop-filter: blur(40px); box-shadow: 0 40px 100px rgba(0,0,0,0.5);">
-            <form th:action="@{/admin/add-post}" method="POST" style="display: flex; flex-direction: column; gap: 32px;">
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <label for="title" style="color: var(--accent-cyan); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Mission Title</label>
-                    <input type="text" id="title" name="title" placeholder="Descriptive title for this sector..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 16px; border-radius: 12px; font-size: 1.1rem; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent-cyan)'" onblur="this.style.borderColor='var(--glass-border)'" required>
+        <div style="background: var(--bg-surface); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border-subtle);">
+            <form th:action="@{/admin/add-post}" method="POST" style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="title" style="color: var(--accent-blue); font-family: var(--font-mono); font-size: 0.8rem;">// STRING: title</label>
+                    <input type="text" id="title" name="title" placeholder="Entry title..." style="background: var(--bg-dark); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 14px; border-radius: var(--radius); font-size: 1rem; outline: none; transition: border-color 0.2s;" required>
                 </div>
-                <div style="display: flex; flex-direction: column; gap: 12px;">
-                    <label for="body" style="color: var(--accent-violet); font-size: 0.85rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em;">Data Log (Markdown)</label>
-                    <textarea id="body" name="body" rows="15" placeholder="Record your observations here..." style="background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border); color: white; padding: 20px; border-radius: 16px; font-size: 1.1rem; font-family: inherit; line-height: 1.6; outline: none; transition: border-color 0.3s;" onfocus="this.style.borderColor='var(--accent-violet)'" onblur="this.style.borderColor='var(--glass-border)'" required></textarea>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="body" style="color: var(--accent-purple); font-family: var(--font-mono); font-size: 0.8rem;">// TEXT: body (markdown)</label>
+                    <textarea id="body" name="body" rows="15" placeholder="System.out.println('Your content here...');" style="background: var(--bg-dark); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 16px; border-radius: var(--radius); font-size: 1rem; font-family: var(--font-mono); line-height: 1.6; outline: none; transition: border-color 0.2s;" required></textarea>
                 </div>
                 <div style="display: flex; gap: 16px; margin-top: 8px;">
-                    <button type="submit" class="btn btn-primary" style="flex-grow: 1; justify-content: center; height: 56px; font-size: 1.1rem; letter-spacing: 0.05em;">
-                        <i class="bi bi-rocket-takeoff"></i> Launch Expedition
+                    <button type="submit" class="btn btn-primary" style="flex-grow: 1; justify-content: center; height: 52px; font-size: 1rem;">
+                        <i class="bi bi-terminal"></i> commit_to_main()
                     </button>
                 </div>
             </form>

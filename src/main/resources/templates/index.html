@@ -9,14 +9,12 @@
 
     <div layout:fragment="content">
         <section class="author">
-            <h1 class="author__heading">Beyond the Cosmos.</h1>
-            <p class="author__body" style="font-size: 1.2rem; color: var(--text-secondary);">Exploring the frontier of deep technology and celestial design.</p>
+            <h1 class="author__heading">Hello World_</h1>
+            <p class="author__body">A blog about code, architecture, and the pursuit of elegant solutions.</p>
         </section>
 
-        <img th:src="@{/img/hero-image.webp}" alt="Featured Illustration" class="hero-image">
-
         <section class="articles">
-            <h2>Latest Expeditions</h2>
+            <h2>Recent commits</h2>
 
             <ul class="article-ul">
                 <li th:each="post : ${data}">

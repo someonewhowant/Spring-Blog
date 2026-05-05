@@ -1,12 +1,12 @@
 <header class="header" th:fragment="header">
     <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-        <a th:href="@{/}" class="header__logo">NOVA</a>
+        <a th:href="@{/}" class="header__logo"><span>{</span> code_blog <span>}</span></a>
         
         <nav class="header__nav">
             <ul>
-                <li><a th:href="@{/}" class="active">Discover</a></li>
-                <li><a th:href="@{/about}">Manifesto</a></li>
-                <li><a th:href="@{/admin/dashboard}">Portal</a></li>
+                <li><a th:href="@{/}" class="active">/home</a></li>
+                <li><a th:href="@{/about}">/about</a></li>
+                <li><a th:href="@{/admin/dashboard}">/admin</a></li>
             </ul>
         </nav>
 
