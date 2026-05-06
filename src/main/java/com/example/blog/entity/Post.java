@@ -28,6 +28,9 @@ public class Post {
     @Column(columnDefinition = "TEXT", nullable = false)
     private String body;
 
+    @Column(name = "image_url")
+    private String imageUrl;
+
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;

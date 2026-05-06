@@ -4,22 +4,64 @@
       layout:decorate="~{layouts/main}">
 <head>
     <title>Edit Post</title>
+    <link rel="stylesheet" href="https://unpkg.com/easymde/dist/easymde.min.css">
+    <style>
+        .EasyMDEContainer { background: var(--bg-dark); border-radius: var(--radius); }
+        .editor-toolbar { border-color: var(--border-subtle) !important; background: var(--bg-surface) !important; border-radius: var(--radius) var(--radius) 0 0 !important; }
+        .editor-toolbar button { color: var(--text-main) !important; }
+        .editor-toolbar button:hover, .editor-toolbar button.active { background: var(--bg-dark) !important; border-color: var(--border-active) !important; }
+        .CodeMirror { background: var(--bg-dark) !important; color: var(--text-main) !important; border-color: var(--border-subtle) !important; border-radius: 0 0 var(--radius) var(--radius) !important; font-family: var(--font-mono) !important; }
+        .editor-preview-active { background: var(--bg-dark) !important; color: var(--text-main) !important; }
+        .editor-statusbar { color: var(--text-dim) !important; }
+    </style>
 </head>
 <body>
-    <div layout:fragment="content">
-        <h1>Edit Post</h1>
-        <form th:action="@{/admin/edit-post/{id}(id=${post.id})}" method="POST">
-            <div class="form-group">
-                <label for="title">Title</label>
-                <input type="text" id="title" name="title" th:value="${post.title}" class="form-control" required>
-            </div>
-            <div class="form-group">
-                <label for="body">Content</label>
-                <textarea id="body" name="body" th:text="${post.body}" class="form-control" rows="10" required></textarea>
-            </div>
-            <button type="submit" class="btn">Update Post</button>
-            <a th:href="@{/admin/dashboard}" class="btn btn-cancel">Cancel</a>
-        </form>
+    <div layout:fragment="content" style="max-width: 900px; margin: 0 auto;">
+        <div class="admin-header" style="margin-bottom: 40px; display: flex; justify-content: space-between; align-items: center;">
+            <h1 class="author__heading" style="font-size: 1.8rem; margin: 0;">edit_post.py</h1>
+            <a th:href="@{/admin/dashboard}" class="btn btn-outline" style="color: var(--accent-orange); border-color: var(--accent-orange);">
+                <i class="bi bi-x-lg"></i> discard_changes()
+            </a>
+        </div>
+        
+        <div style="background: var(--bg-surface); padding: 40px; border-radius: var(--radius); border: 1px solid var(--border-subtle);">
+            <form th:action="@{/admin/edit-post/{id}(id=${post.id})}" method="POST" enctype="multipart/form-data" style="display: flex; flex-direction: column; gap: 24px;">
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="title" style="color: var(--accent-blue); font-family: var(--font-mono); font-size: 0.8rem;">// STRING: title</label>
+                    <input type="text" id="title" name="title" th:value="${post.title}" placeholder="Post Title" style="background: var(--bg-dark); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 14px; border-radius: var(--radius); font-size: 1rem; outline: none; transition: border-color 0.2s;" required>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="image" style="color: var(--accent-orange); font-family: var(--font-mono); font-size: 0.8rem;">// FILE: image (leave empty to keep current)</label>
+                    <input type="file" id="image" name="image" accept="image/*" style="background: var(--bg-dark); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 14px; border-radius: var(--radius); font-size: 1rem; outline: none; transition: border-color 0.2s;">
+                    <div th:if="${post.imageUrl}" style="margin-top: 10px;">
+                        <span style="color: var(--text-muted); font-size: 0.8rem;">Current image:</span><br>
+                        <img th:src="${post.imageUrl}" style="max-width: 200px; border-radius: var(--radius); margin-top: 5px; border: 1px solid var(--border-subtle);">
+                    </div>
+                </div>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <label for="body" style="color: var(--accent-purple); font-family: var(--font-mono); font-size: 0.8rem;">// TEXT: body (markdown)</label>
+                    <textarea id="body" name="body" th:text="${post.body}" rows="15" placeholder="Content..." style="background: var(--bg-dark); border: 1px solid var(--border-subtle); color: var(--text-main); padding: 16px; border-radius: var(--radius); font-size: 1rem; font-family: var(--font-mono); line-height: 1.6; outline: none; transition: border-color 0.2s;"></textarea>
+                </div>
+                <div style="display: flex; gap: 16px; margin-top: 8px;">
+                    <button type="submit" class="btn btn-primary" style="flex-grow: 1; justify-content: center; height: 52px; font-size: 1rem;">
+                        <i class="bi bi-check-lg"></i> push_updates()
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
+
+    <th:block layout:fragment="scripts">
+        <script src="https://unpkg.com/easymde/dist/easymde.min.js"></script>
+        <script>
+            const easyMDE = new EasyMDE({
+                element: document.getElementById('body'),
+                spellChecker: false,
+                status: false,
+                minHeight: "400px",
+                toolbar: ["bold", "italic", "heading", "|", "quote", "unordered-list", "ordered-list", "|", "link", "image", "|", "preview", "side-by-side", "fullscreen", "|", "guide"]
+            });
+        </script>
+    </th:block>
 </body>
 </html>

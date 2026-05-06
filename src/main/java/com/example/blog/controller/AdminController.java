@@ -1,11 +1,15 @@
 package com.example.blog.controller;
 
 import com.example.blog.entity.Post;
+import com.example.blog.service.FileStorageService;
 import com.example.blog.service.PostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/admin")
@@ -13,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 public class AdminController {
 
     private final PostService postService;
+    private final FileStorageService fileStorageService;
 
     /**
      * Страница логина админа.
@@ -29,8 +34,8 @@ public class AdminController {
      */
     @GetMapping("/dashboard")
     public String dashboard(Model model) {
-        // Для дашборда обычно получаем все посты без сложной пагинации или с упрощенной
-        model.addAttribute("data", postService.getAllPosts(1).getContent());
+        List<Post> posts = postService.getAllPosts();
+        model.addAttribute("data", posts);
         model.addAttribute("title", "Dashboard");
         return "admin/dashboard";
     }
@@ -48,7 +53,11 @@ public class AdminController {
      * Обработка создания нового поста.
      */
     @PostMapping("/add-post")
-    public String addPost(@ModelAttribute Post post) {
+    public String addPost(@ModelAttribute Post post, @RequestParam("image") MultipartFile image) {
+        if (!image.isEmpty()) {
+            String imageUrl = fileStorageService.storeFile(image);
+            post.setImageUrl(imageUrl);
+        }
         postService.createPost(post);
         return "redirect:/admin/dashboard";
     }
@@ -68,7 +77,11 @@ public class AdminController {
      * Обработка обновления поста.
      */
     @PostMapping("/edit-post/{id}")
-    public String updatePost(@PathVariable Long id, @ModelAttribute Post post) {
+    public String updatePost(@PathVariable Long id, @ModelAttribute Post post, @RequestParam("image") MultipartFile image) {
+        if (!image.isEmpty()) {
+            String imageUrl = fileStorageService.storeFile(image);
+            post.setImageUrl(imageUrl);
+        }
         postService.updatePost(id, post);
         return "redirect:/admin/dashboard";
     }

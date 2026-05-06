@@ -12,17 +12,24 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
-    private static final int PAGE_SIZE = 6; // Можно вынести в application.yml
+    private static final int PAGE_SIZE = 6;
 
     @Override
     public Page<Post> getAllPosts(int page) {
         Pageable pageable = PageRequest.of(page > 0 ? page - 1 : 0, PAGE_SIZE, Sort.by("createdAt").descending());
         return postRepository.findAll(pageable);
+    }
+
+    @Override
+    public List<Post> getAllPosts() {
+        return postRepository.findAll(Sort.by("createdAt").descending());
     }
 
     @Override
@@ -33,7 +40,7 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public Page<Post> searchPosts(String query, int page) {
-        Pageable pageable = PageRequest.of(page > 0 ? page - 1 : 0, PAGE_SIZE);
+        Pageable pageable = PageRequest.of(page > 0 ? page - 1 : 0, PAGE_SIZE, Sort.by("createdAt").descending());
         return postRepository.searchByKeyword(query, pageable);
     }
 
@@ -50,6 +57,9 @@ public class PostServiceImpl implements PostService {
         
         post.setTitle(postDetails.getTitle());
         post.setBody(postDetails.getBody());
+        if (postDetails.getImageUrl() != null) {
+            post.setImageUrl(postDetails.getImageUrl());
+        }
         
         return postRepository.save(post);
     }

@@ -30,9 +30,9 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(csrf -> csrf.disable()) // Для простоты разработки, в продакшене лучше настроить корректно
+        http.csrf(csrf -> csrf.disable())
             .authorizeHttpRequests(authorize -> authorize
-                .requestMatchers("/css/**", "/js/**", "/img/**", "/h2-console/**", "/favicon.ico").permitAll()
+                .requestMatchers("/css/**", "/js/**", "/img/**", "/uploads/**", "/h2-console/**", "/favicon.ico").permitAll()
                 .requestMatchers("/", "/post/**", "/search", "/about", "/admin/login").permitAll()
                 .requestMatchers("/admin/**").hasRole("ADMIN")
                 .anyRequest().authenticated()
@@ -47,7 +47,7 @@ public class SecurityConfig {
                 .logoutRequestMatcher(new AntPathRequestMatcher("/admin/logout"))
                 .permitAll()
             )
-            .headers(headers -> headers.frameOptions(frame -> frame.disable())); // Для работы H2 Console
+            .headers(headers -> headers.frameOptions(frame -> frame.disable()));
 
         return http.build();
     }

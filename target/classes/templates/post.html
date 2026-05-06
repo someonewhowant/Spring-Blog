@@ -6,19 +6,33 @@
     <title th:text="${post.title}">Post</title>
 </head>
 <body>
-    <div layout:fragment="content" style="padding-top: 40px;">
-        <article>
-            <header style="text-align: center; margin-bottom: 50px;">
+    <div layout:fragment="content">
+        <article class="post">
+            <header class="post-header">
                 <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
-                <h1 style="font-size: 3.5rem; margin-top: 10px;" th:text="${post.title}">Title</h1>
+                <h1 class="post-title" th:text="${post.title}">Title</h1>
+                <div class="post-meta">
+                    <span>// AUTHOR: code_admin</span>
+                    <span style="margin-left: 20px;">// REVISION: 1.0.4</span>
+                </div>
             </header>
+
+            <div th:if="${post.imageUrl}" class="post-image" style="margin-bottom: 40px;">
+                <img th:src="${post.imageUrl}" th:alt="${post.title}">
+            </div>
             
-            <div class="post-body" th:utext="${post.body}">
+            <div class="post-content" th:utext="${post.body}">
                 Content
             </div>
             
-            <footer style="margin-top: 80px; border-top: 1px solid var(--border-color); padding-top: 40px;">
-                <a th:href="@{/}" class="pagination-btn">&larr; Back to all posts</a>
+            <footer style="margin-top: 80px; border-top: 1px solid var(--border-subtle); padding-top: 40px; display: flex; justify-content: space-between; align-items: center;">
+                <a th:href="@{/}" class="pagination-btn">
+                    &lt;-- cd ..
+                </a>
+                <div class="footer-socials">
+                    <a href="#"><i class="bi bi-twitter"></i></a>
+                    <a href="#"><i class="bi bi-github"></i></a>
+                </div>
             </footer>
         </article>
     </div>

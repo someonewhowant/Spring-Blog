@@ -3,12 +3,34 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{layouts/main}">
 <head>
-    <title>About Us</title>
+    <title>About</title>
 </head>
 <body>
-    <div layout:fragment="content">
-        <h1>About Us</h1>
-        <p>This is a blog migrated from Node.js/Express/MongoDB to Java/Spring Boot/H2.</p>
+    <div layout:fragment="content" style="max-width: 800px; margin: 0 auto;">
+        <h1 class="author__heading">/dev/about</h1>
+        <p style="font-size: 1.25rem; line-height: 1.8; color: var(--text-dim); margin-bottom: 60px;">
+            This blog is a digital workbench where complex ideas are deconstructed into manageable components. We focus on modern software engineering, robust architectures, and the continuous evolution of the web.
+        </p>
+        <div style="padding: 40px; background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: var(--radius); position: relative;">
+            <h3 style="font-family: var(--font-mono); font-size: 1.5rem; margin-bottom: 24px; color: var(--accent-blue);">system.init()</h3>
+            <p style="font-size: 1.1rem; line-height: 1.8; color: var(--text-dim);">
+                CodeBlog was built with a simple goal: to document the journey of building software that lasts. We believe in transparency, technical excellence, and the power of shared knowledge.
+            </p>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; margin-top: 48px; border-top: 1px solid var(--border-subtle); padding-top: 32px;">
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--accent-green);">01. COMPILE</div>
+                    <div style="color: var(--text-dim); margin-top: 8px; font-size: 0.9rem;">Turning abstract concepts into functional code.</div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--accent-blue);">02. EXECUTE</div>
+                    <div style="color: var(--text-dim); margin-top: 8px; font-size: 0.9rem;">Deploying high-performance solutions.</div>
+                </div>
+                <div>
+                    <div style="font-family: var(--font-mono); font-size: 1.2rem; font-weight: 700; color: var(--accent-purple);">03. DEBUG</div>
+                    <div style="color: var(--text-dim); margin-top: 8px; font-size: 0.9rem;">Constant iteration and improvement.</div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 </html>

@@ -16,6 +16,10 @@
                     <span style="margin-left: 20px;">// REVISION: 1.0.4</span>
                 </div>
             </header>
+
+            <div th:if="${post.imageUrl}" class="post-image" style="margin-bottom: 40px;">
+                <img th:src="${post.imageUrl}" th:alt="${post.title}">
+            </div>
             
             <div class="post-content" th:utext="${post.body}">
                 Content

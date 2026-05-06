@@ -5,9 +5,13 @@ com/example/blog/config/SecurityConfig.class
 com/example/blog/service/impl/PostServiceImpl.class
 com/example/blog/controller/AdminController.class
 com/example/blog/BlogApplication.class
+com/example/blog/config/WebConfig.class
+com/example/blog/service/MarkdownService.class
 com/example/blog/entity/User.class
 com/example/blog/entity/User$UserBuilder.class
+com/example/blog/service/FileStorageService.class
 com/example/blog/service/PostService.class
 com/example/blog/entity/Post.class
 com/example/blog/entity/Post$PostBuilder.class
+com/example/blog/config/JpaAuditingConfig.class
 com/example/blog/controller/MainController.class

@@ -16,12 +16,17 @@
         <section class="articles">
             <h2>Recent commits</h2>
 
-            <ul class="article-grid">
+            <ul class="article-ul">
                 <li th:each="post : ${data}">
-                    <a th:href="@{/post/{id}(id=${post.id})}">
-                        <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
-                        <span th:text="${post.title}">Post Title</span>
-                        <p th:text="${#strings.abbreviate(post.body, 120)}"></p>
+                    <a th:href="@{/post/{id}(id=${post.id})}" style="display: flex; gap: 24px; text-decoration: none; padding: 24px;">
+                        <div th:if="${post.imageUrl}" class="article-thumbnail">
+                            <img th:src="${post.imageUrl}" th:alt="${post.title}">
+                        </div>
+                        <div style="flex-grow: 1;">
+                            <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
+                            <span th:text="${post.title}" style="display: block; font-size: 1.3rem; font-weight: 600; color: var(--text-main); margin-bottom: 8px;">Post Title</span>
+                            <p th:text="${#strings.abbreviate(post.body, 120)}" style="color: var(--text-dim); font-size: 0.95rem; margin: 0;"></p>
+                        </div>
                     </a>
                 </li>
             </ul>
