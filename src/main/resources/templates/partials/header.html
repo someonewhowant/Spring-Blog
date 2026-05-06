@@ -1,12 +1,12 @@
 <header class="header" th:fragment="header">
     <div class="container">
-        <a th:href="@{/}" class="header__logo"><span>{</span> code_blog <span>}</span></a>
+        <a th:href="@{/}" class="header__logo">OBSIDIAN<span>_DEV</span></a>
         
         <nav class="header__nav">
             <ul>
-                <li><a th:href="@{/}" class="active">/home</a></li>
-                <li><a th:href="@{/about}">/about</a></li>
-                <li><a th:href="@{/admin/dashboard}">/admin</a></li>
+                <li><a th:href="@{/}" th:classappend="${#httpServletRequest.requestURI == '/' ? 'active' : ''}">HOME</a></li>
+                <li><a th:href="@{/about}" th:classappend="${#httpServletRequest.requestURI == '/about' ? 'active' : ''}">ABOUT</a></li>
+                <li><a th:href="@{/admin/dashboard}" th:classappend="${#httpServletRequest.requestURI.startsWith('/admin') ? 'active' : ''}">ADMIN</a></li>
             </ul>
         </nav>
 

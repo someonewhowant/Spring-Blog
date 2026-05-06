@@ -9,24 +9,19 @@
 
     <div layout:fragment="content">
         <section class="author">
-            <h1 class="author__heading">Hello World_</h1>
-            <p class="author__body">A blog about code, architecture, and the pursuit of elegant solutions.</p>
+            <h1 class="author__heading">Obsidian Dev_</h1>
+            <p class="author__body">Technical dispatches on system architecture, low-level optimization, and the pursuit of engineered quality.</p>
         </section>
 
         <section class="articles">
-            <h2>Recent commits</h2>
+            <h2>Recent Dispatches</h2>
 
-            <ul class="article-ul">
+            <ul class="article-grid">
                 <li th:each="post : ${data}">
-                    <a th:href="@{/post/{id}(id=${post.id})}" style="display: flex; gap: 24px; text-decoration: none; padding: 24px;">
-                        <div th:if="${post.imageUrl}" class="article-thumbnail">
-                            <img th:src="${post.imageUrl}" th:alt="${post.title}">
-                        </div>
-                        <div style="flex-grow: 1;">
-                            <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
-                            <span th:text="${post.title}" style="display: block; font-size: 1.3rem; font-weight: 600; color: var(--text-main); margin-bottom: 8px;">Post Title</span>
-                            <p th:text="${#strings.abbreviate(post.body, 120)}" style="color: var(--text-dim); font-size: 0.95rem; margin: 0;"></p>
-                        </div>
+                    <a th:href="@{/post/{id}(id=${post.id})}">
+                        <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>
+                        <span th:text="${post.title}">Post Title</span>
+                        <p th:text="${#strings.abbreviate(post.body, 140)}"></p>
                     </a>
                 </li>
             </ul>
