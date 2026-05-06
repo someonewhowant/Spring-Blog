@@ -16,7 +16,7 @@
         <section class="articles">
             <h2>Recent commits</h2>
 
-            <ul class="article-ul">
+            <ul class="article-grid">
                 <li th:each="post : ${data}">
                     <a th:href="@{/post/{id}(id=${post.id})}">
                         <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'MMMM dd, yyyy')}">Date</span>

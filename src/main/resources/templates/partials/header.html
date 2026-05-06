@@ -1,5 +1,5 @@
 <header class="header" th:fragment="header">
-    <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
+    <div class="container">
         <a th:href="@{/}" class="header__logo"><span>{</span> code_blog <span>}</span></a>
         
         <nav class="header__nav">
@@ -20,7 +20,7 @@
 
     <!-- Search Bar Slide-down -->
     <div class="searchBar">
-        <div class="container" style="display: flex; align-items: center; gap: 24px;">
+        <div class="container">
             <i class="bi bi-search" style="color: white; font-size: 1.8rem; opacity: 0.5;"></i>
             <form th:action="@{/search}" method="GET" role="search" style="flex-grow: 1;">
                 <input type="search" name="searchTerm" id="searchInput" placeholder="Search for insights..." autocomplete="off">

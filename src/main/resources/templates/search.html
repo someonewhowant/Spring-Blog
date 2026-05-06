@@ -11,7 +11,7 @@
             grep -r "<span style="color: var(--accent-green);" th:text="${searchTerm}"></span>" .
         </h1>
         
-        <ul class="article-ul" th:if="${not #lists.isEmpty(data)}">
+        <ul class="article-grid" th:if="${not #lists.isEmpty(data)}">
             <li th:each="post : ${data}">
                 <a th:href="@{/post/{id}(id=${post.id})}">
                     <span class="article-list__date" th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd')}">Date</span>
