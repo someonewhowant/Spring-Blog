@@ -16,14 +16,13 @@ import java.time.LocalDateTime;
 @Table(name = "comments")
 public class Comment {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String name;
     @Column(nullable = false)
     private String email;
     @Lob
-    @Column(columnDefinition = "longtext")
     private String content;
     @CreationTimestamp
     private LocalDateTime createdOn;

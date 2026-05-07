@@ -34,6 +34,7 @@ public class WebSpringSecurity {
                 .requestMatchers("/").permitAll()
                 .requestMatchers("/register/**").permitAll()
                 .requestMatchers("/post/**").permitAll()
+                .requestMatchers("/h2-console/**").permitAll()
                 .requestMatchers("/admin/**").hasAnyRole("ADMIN", "GUEST")
                 .anyRequest().authenticated()
         .and()
@@ -45,7 +46,9 @@ public class WebSpringSecurity {
         .and()
                 .logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .permitAll();
+                .permitAll()
+        .and()
+                .headers().frameOptions().disable();
         return http.build();
     }
 

@@ -18,13 +18,13 @@ import java.util.Set;
 @Table(name = "posts")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @Column(nullable = false)
     private String title;
     private String url;
     @Lob
-    @Column(nullable = false, columnDefinition = "longtext")
+    @Column(nullable = false)
     private String content;
     private String shortDescription;
     @CreationTimestamp
