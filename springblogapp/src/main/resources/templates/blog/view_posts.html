@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="~{blog/header :: header}"></div>
+<body>
+<div th:replace="~{blog/header :: navbar}"></div>
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div th:each="post : ${postsResponse}" class="card">
+                <div class="card-header">
+                    <span class="post-meta" th:text="${#temporals.format(post.createdOn, 'MMM dd, yyyy')}"></span>
+                    <h2 class="card-title">
+                        <a th:href="@{/post/{postUrl}(postUrl=${post.url})}" th:text="${post.title}"></a>
+                    </h2>
+                </div>
+                <div class="card-body">
+                    <div class="mb-3" th:utext="${post.shortDescription}"></div>
+                    <a class="read-more" th:href="@{/post/{postUrl}(postUrl=${post.url})}">
+                        Read full article 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="ms-2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div th:replace="~{blog/search :: search}"></div>
+        </div>
+    </div>
+</div>
+<br><br><br><br>
+<div th:replace="~{blog/footer :: footer}"></div>
+</body>
+</html>

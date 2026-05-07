@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+  <div class="search-container" th:fragment="search">
+    <h4 class="mb-4">Search</h4>
+    <form th:action="@{/page/search}">
+      <div class="d-flex flex-column gap-3">
+        <input class="form-control" name="query" placeholder="Type keywords...">
+        <button class="btn btn-primary w-100" type="submit">Search Posts</button>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
