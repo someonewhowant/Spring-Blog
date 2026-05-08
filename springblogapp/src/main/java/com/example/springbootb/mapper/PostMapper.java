@@ -15,7 +15,7 @@ public class PostMapper {
                 .shortDescription(post.getShortDescription())
                 .createdOn(post.getCreatedOn())
                 .updatedOn(post.getUpdatedOn())
-                .comments(post.getComments().stream().map(CommentMapper::mapToCommentDto).collect(Collectors.toSet()))
+                .comments(post.getComments() != null ? post.getComments().stream().map(CommentMapper::mapToCommentDto).collect(Collectors.toSet()) : null)
                 .build();
     }
 

@@ -115,8 +115,14 @@ public class PostController {
 
     private static String getUrl(String postTitle) {
         String title = postTitle.trim().toLowerCase();
-        String url = title.replaceAll("\\s+", "-");
-        url = url.replaceAll("[^A-Za-z0-9]", "-");
+        String url = title.replaceAll("[^A-Za-z0-9]", "-");
+        url = url.replaceAll("-+", "-");
+        if (url.startsWith("-")) {
+            url = url.substring(1);
+        }
+        if (url.endsWith("-")) {
+            url = url.substring(0, url.length() - 1);
+        }
         return url;
     }
 }

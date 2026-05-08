@@ -25,8 +25,15 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public List<PostDto> findPostByUser() {
-        String email = SecurityUtils.getCurrentUser().getUsername();
+        org.springframework.security.core.userdetails.User currentUser = SecurityUtils.getCurrentUser();
+        if (currentUser == null) {
+            return List.of();
+        }
+        String email = currentUser.getUsername();
         User createdBy = userRepository.findByEmail(email);
+        if (createdBy == null) {
+            return List.of();
+        }
         Long userId = createdBy.getId();
         List<Post> posts = postRepository.findPostsByUser(userId);
         return posts.stream().map(PostMapper::mapToPostDto).collect(Collectors.toList());
@@ -40,9 +47,25 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void createPost(PostDto postDto) {
-        String email = SecurityUtils.getCurrentUser().getUsername();
+        org.springframework.security.core.userdetails.User currentUser = SecurityUtils.getCurrentUser();
+        if (currentUser == null) {
+            throw new RuntimeException("No authenticated user found");
+        }
+        String email = currentUser.getUsername();
         User user = userRepository.findByEmail(email);
+        if (user == null) {
+            throw new RuntimeException("Current user not found in the database");
+        }
+
+        // Check if URL is already taken and append a count if needed
+        String url = postDto.getUrl();
+        if (postRepository.findByUrl(url).isPresent()) {
+            url = url + "-" + System.currentTimeMillis();
+        }
+
         Post post = PostMapper.mapToPost(postDto);
+        post.setId(null); // Ensure it's a new post
+        post.setUrl(url);
         post.setCreatedBy(user);
         postRepository.save(post);
     }
@@ -55,10 +78,11 @@ public class PostServiceImpl implements PostService {
 
     @Override
     public void updatePost(PostDto postDto) {
-        String email = SecurityUtils.getCurrentUser().getUsername();
-        User createdBy = userRepository.findByEmail(email);
-        Post post = PostMapper.mapToPost(postDto);
-        post.setCreatedBy(createdBy);
+        Post post = postRepository.findById(postDto.getId()).get();
+        post.setTitle(postDto.getTitle());
+        post.setShortDescription(postDto.getShortDescription());
+        post.setContent(postDto.getContent());
+        post.setUrl(postDto.getUrl());
         postRepository.save(post);
     }
 

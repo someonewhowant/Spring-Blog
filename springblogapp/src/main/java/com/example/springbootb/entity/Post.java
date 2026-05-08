@@ -18,7 +18,7 @@ import java.util.Set;
 @Table(name = "posts")
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
     private String title;
@@ -34,6 +34,7 @@ public class Post {
     @ManyToOne
     @JoinColumn(name = "created_by", nullable = false)
     private User createdBy;
+    @Builder.Default
     @OneToMany(mappedBy = "post", cascade = CascadeType.REMOVE)
     private Set<Comment> comments = new HashSet<>();
 
