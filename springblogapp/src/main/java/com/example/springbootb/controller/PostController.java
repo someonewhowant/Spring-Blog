@@ -47,7 +47,7 @@ public class PostController {
             comments = commentService.findCommentsByPost();
         }
         model.addAttribute("comments", comments);
-        return "/admin/comments";
+        return "admin/comments";
     }
 
     @GetMapping("/admin/posts/comments/{commentId}")

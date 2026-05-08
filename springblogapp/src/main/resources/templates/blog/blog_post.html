@@ -1,58 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="~{blog/header :: header}"></div>
+<head th:replace="~{blog/header :: header}"></head>
 <body>
 <div th:replace="~{blog/header :: navbar}"></div>
-<br><br>
-<div class="container mt-xl mb-xl">
+
+<div class="container section-padding">
   <div class="row justify-content-center">
-    <div class="col-md-8 content-reader">
-      <header class="mb-5">
-        <span class="post-meta" th:text="${#temporals.format(post.createdOn, 'MMMM dd, yyyy')}"></span>
-        <h1 class="display-4 mb-4" th:text="${post.title}"></h1>
-        <p class="lead text-secondary" th:text="${post.shortDescription}"></p>
-      </header>
+    <div class="col-lg-8 content-reader">
+      <article>
+        <header class="mb-5">
+          <div class="post-meta" th:text="${#temporals.format(post.createdOn, 'MMMM dd, yyyy')}"></div>
+          <h1 class="display-3 mb-4" th:text="${post.title}"></h1>
+          <p class="lead text-secondary fs-4" th:text="${post.shortDescription}"></p>
+        </header>
+        
+        <div class="article-content" th:utext="${post.content}"></div>
+      </article>
       
-      <article class="article-content mb-5" th:utext="${post.content}"></article>
-      
-      <section class="mt-xl">
-        <h3 class="mb-4">Comments</h3>
-        <div th:each="comment: ${post.comments}" class="mb-4 p-4 border-bottom border-strong">
-          <div class="d-flex justify-content-between align-items-center mb-2">
-            <strong class="text-accent" th:text="${comment.name}"></strong>
+      <section class="mt-xl pt-5 border-top border-dim">
+        <h3 class="mb-5 font-mono text-uppercase small tracking-widest text-accent">// Terminal_Comments</h3>
+        
+        <div th:each="comment: ${post.comments}" class="card mb-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <strong class="text-primary font-mono" th:text="${comment.name}"></strong>
             <span class="post-meta mb-0" th:text="${#temporals.format(comment.createdOn, 'dd MMM yyyy')}"></span>
           </div>
           <p class="text-secondary mb-0" th:text="${comment.content}"></p>
         </div>
         
-        <div class="card mt-5">
-          <div class="card-header">
-            <h4 class="mb-0">Leave a response</h4>
+        <div class="card mt-5 border-strong bg-surface-raised">
+          <div class="mb-4">
+            <h4 class="mb-1">Post a response</h4>
+            <p class="text-dim small">Your email address will not be published.</p>
           </div>
-          <div class="card-body">
-            <form role="form" method="post" th:action="@{/{postUrl}/comments(postUrl=${post.url})}" th:object="${comment}">
-              <div class="row">
-                <div class="col-md-6 mb-3">
-                  <input class="form-control" id="name" name="name" placeholder="Name" th:field="*{name}" type="text">
-                  <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger small mt-1"></p>
-                </div>
-                <div class="col-md-6 mb-3">
-                  <input class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}" type="text">
-                  <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger small mt-1"></p>
-                </div>
+          <form role="form" method="post" th:action="@{/{postUrl}/comments(postUrl=${post.url})}" th:object="${comment}">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <input class="form-control" id="name" name="name" placeholder="Name" th:field="*{name}" type="text">
+                <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger small mt-1"></p>
               </div>
-              <div class="mb-4">
-                <textarea class="form-control" id="content" name="content" placeholder="Your thoughts..." rows="5" th:field="*{content}"></textarea>
-                <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger small mt-1"></p>
+              <div class="col-md-6 mb-3">
+                <input class="form-control" id="email" name="email" placeholder="Email" th:field="*{email}" type="text">
+                <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger small mt-1"></p>
               </div>
-              <button class="btn btn-primary px-5" type="submit">Post Comment</button>
-            </form>
-          </div>
+            </div>
+            <div class="mb-4">
+              <textarea class="form-control" id="content" name="content" placeholder="Type your thoughts..." rows="5" th:field="*{content}"></textarea>
+              <p th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger small mt-1"></p>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit Response</button>
+          </form>
         </div>
       </section>
     </div>
   </div>
 </div>
+
 <div th:replace="~{blog/footer :: footer}"></div>
 </body>
 </html>
